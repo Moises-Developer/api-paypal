@@ -1,0 +1,64 @@
+nav 
+{
+    padding: 1.5rem !important;
+    background-color: #3767a2 !important;
+}
+
+.alinear
+{
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+}
+
+a 
+{
+    color: #fff !important;
+}
+
+.btnHidden 
+{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.dropdown-item 
+{
+    color: #000 !important;
+}
+
+body 
+{
+    /*overflow: hidden;*/
+    background-color: #3c66997c;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+footer 
+{
+    color: #fff !important;
+    padding-top: 3rem;
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+    padding-bottom: 3rem;
+}
+
+.footerDown 
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footerUp 
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}

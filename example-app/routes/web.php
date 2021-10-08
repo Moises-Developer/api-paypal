@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'controladorEmpresa@indexCreate')->name('payment.cancel');
+Route::get('/', 'controladorEmpresa@indexCreate');
 
 Route::resources([
     '/costumer' => 'ControllerCostumer',
@@ -23,6 +23,8 @@ Route::resources([
 ]);
 
 Route::get('/API/PayPal/Pay', 'ControllerPayment@payWithPayPal');
-Route::get('/API/PayPal/Pay/Status', 'ControllerPayment@PayPalStatus')->name('payment.success');
+Route::get('/API/PayPal/Pay/Status', 'ControllerPayment@PayPalStatus');
+Route::get('/API/PayPal/Pay/Status/Fail', 'ControllerPayment@PayPalFail');
+Route::get('/API/PayPal/Pay/Status/Success', 'ControllerPayment@PayPalSuccess');
 
 Auth::routes();

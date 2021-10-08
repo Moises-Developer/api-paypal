@@ -10,28 +10,22 @@
             @include('empresa/vendedor')
         </li>
         <li class="nav-item">
+            @include('cliente/cliente')
+        </li>
+        <li class="nav-item">
             @include('empresa/coche_nuevo')
         </li>
         <li class="nav-item">
-            @include('empresa/version')
-        </li>
-        <li class="nav-item">
-            @include('empresa/modelo')
+            @include('empresa/venta')
         </li>
         <li class="nav-item">
             @include('empresa/marca')
         </li>
         <li class="nav-item">
-            @include('empresa/extra')
+            @include('empresa/modelo')
         </li>
         <li class="nav-item">
-            @include('empresa/coche_extra')
-        </li>
-        <li class="nav-item">
-            @include('cliente/cliente')
-        </li>
-        <li class="nav-item">
-            @include('cliente/coche_cliente')
+            @include('empresa/version')
         </li>
       </ul>
     </div>

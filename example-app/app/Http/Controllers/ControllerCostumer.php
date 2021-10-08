@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Costumer;
 
 class ControllerCostumer extends Controller
 {
@@ -13,7 +14,7 @@ class ControllerCostumer extends Controller
      */
     public function index()
     {
-        return 'this is the index';
+        return 'ERROR 404, PAGE NOT FOUND';
     }
 
     /**
@@ -23,7 +24,7 @@ class ControllerCostumer extends Controller
      */
     public function create()
     {
-        return 'this is created';
+        return 'ERROR 404, PAGE NOT FOUND';
     }
 
     /**
@@ -34,7 +35,20 @@ class ControllerCostumer extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //here I do the validation of the columns
+
+        //just in this version of laravel it doesn't exist this validation
+
+        /*$request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'telephone' => 'required',
+            'address' => 'required'
+        ]);*/
+        //Here I do the creation in database
+        Costumer::create($request->all());
+        //now we return an answer
+        return 'Registro Exitoso';
     }
 
     /**
@@ -56,7 +70,7 @@ class ControllerCostumer extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect('/')->with('costumer', Costumer::find($id))->with('function', 'edit');
     }
 
     /**

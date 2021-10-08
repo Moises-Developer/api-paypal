@@ -22,6 +22,13 @@
     </div>
   </div>
   <div class="col-md-4 position-relative">
+    <label for="validationTooltip01" class="form-label">Precio</label>
+    <input type="text" class="form-control" id="validationTooltip01" required>
+    <div class="valid-tooltip">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4 position-relative">
     <label for="validationTooltip02" class="form-label">Numero de la version</label>
     <select class="form-select" id="validationTooltip02" required>
       <option selected disabled value="">Choose...</option>
@@ -31,39 +38,9 @@
       Looks good!
     </div>
   </div>
-  <div class="col-md-4 position-relative">
-    <label for="validationTooltip03" class="form-label">Fecha de compra</label>
-    <input type="text" class="form-control" id="validationTooltip03" required>
-    <div class="valid-tooltip">
-      Looks good!
-    </div>
-  </div>
-  <div class="col-md-4 position-relative">
-    <label for="validationTooltip04" class="form-label">Numero de cliente</label>
-    <select class="form-select" id="validationTooltip04">
-      <option selected disabled value="">Choose...</option>
-      <option>...</option>
-    </select>
-    <div class="valid-tooltip">
-      Looks good!
-    </div>
-  </div>
-  <div class="col-md-4 position-relative">
-    <label for="validationTooltip05" class="form-label">Numero de vendedor</label>
-    <select class="form-select" id="validationTooltip05">
-      <option selected disabled value="">Choose...</option>
-      <option>...</option>
-    </select>
-    <div class="valid-tooltip">
-      Looks good!
-    </div>
-  </div>
-  
-  <div class="col-5">
+
+  <div class="col-12">
     <button class="btn btn-primary" type="submit"> Agregar Nuevo Vehiculo </button>
-  </div>
-  <div class="col-5">
-    <button class="btn btn-primary" type="submit"> Vender Vehiculo </button>
   </div>
 </form>
 

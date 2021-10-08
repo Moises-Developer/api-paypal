@@ -10,6 +10,15 @@ nav
     justify-content: center !important;
 }
 
+.fs
+{
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
 a 
 {
     color: #fff !important;

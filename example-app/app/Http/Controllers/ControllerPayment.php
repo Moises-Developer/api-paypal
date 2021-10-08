@@ -12,7 +12,8 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Api\Amount;
 use PayPal\Exception\PayPalConnectionException;
-use Srmklive\PayPal\Services\ExpressCheckout;
+use PayPal\Api\PaymentExecution;
+
 
 require __DIR__  . '../../../../vendor/autoload.php';
 
@@ -62,26 +63,98 @@ class ControllerPayment extends Controller
             ->setPayer($payer)
             ->setTransactions(array($transaction))
             ->setRedirectUrls($redirectUrls);
-            
-        try {
+        try 
+        {
             $payment->create($this->apiContext);
             return redirect()->away($payment->getApprovalLink());
-        } catch (PayPalConnectionException $ex) {
+        } catch (PayPalConnectionException $ex) 
+        {
             echo $ex->getData();
         }
-
-        //dd($payment->getLinks());
-        $payment->create($this->apiContext);
-        return redirect()->away('https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/tokenservice');
-        //var_dump($payment->getApprovalLink());
         
     }
 
     public function PayPalStatus(Request $request) 
     {
-        dd($request->all());
+        //dd($request->all());
+        $paymentId = $request->input('paymentId');
+        $payerId = $request->input('PayerID');
+        $token = $request->input('token');
+
+        if (!$paymentId || !$payerId || !$token) 
+        {
+            $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
+            return redirect('/API/PayPal/Pay/Status/Fail')->with(compact('status', $status));
+        }
+
+        $payment = Payment::get($paymentId, $this->apiContext);
+
+        $execution = new PaymentExecution();
+        $execution->setPayerId($payerId);
+
+        /** Execute the payment **/
+        $result = $payment->execute($execution, $this->apiContext);
+
+        if ($result->getState() === 'approved') 
+        {
+            $status = 'Gracias! El pago a través de PayPal se ha ralizado correctamente.';
+            return redirect('/API/PayPal/Pay/Status/Success')->with(compact('status', $status));
+        }
+
+        $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
+        return redirect('/API/PayPal/Pay/Status/Fail')->with(compact('status', $status));
     }
 
-    
+    function PayPalFail()
+    {
+        $status = 'PAGO FALLIDO';
+        return view('paypal.failPay')->with(compact('status', $status));
+    }
+
+    function PayPalSuccess()
+    {
+        $status = "PAGO EXITOSO";
+        return view('paypal.successPay')->with(compact('status', $status));
+    }
+
+    /*public function payWithPayPal()
+    {
+        $clientId = "AaAcHegkrUg-O-hxeF7nX2ZjQqZuSs48tfBBWzfYUSit9rtk8KSG8QcmQo9z-FkA6c2j2PkUOspuPO-M";
+        $clientSecret = "EI5n9uf2xr1ocOK02pbWJt-DNanE43MSeXOzKpoTv-5da5DRJ1R6kQRAlJSpiFpNpMVx6jfVVvknXk4z";
+
+        $environment = new SandboxEnvironment($clientId, $clientSecret);
+        $client = new PayPalHttpClient($environment);
+
+        $request = new OrdersCreateRequest();
+        $request->prefer('return=representation');
+        $request->body = [
+                            "intent" => "CAPTURE",
+                            "purchase_units" => [[
+                                "reference_id" => "test_ref_id1",
+                                "amount" => [
+                                    "value" => "100.00",
+                                    "currency_code" => "USD"
+                                ]
+                            ]],
+                            "application_context" => [
+                                "cancel_url" => "https://example.com/cancel",
+                                "return_url" => "https://example.com/return"
+                            ] 
+                        ];
+
+        try {
+            // Call API with your client and get a response for your call
+            $response = $client->execute($request);
+            
+            // If call returns body in response, you can get the deserialized version from the result attribute of the response
+            dd($response);
+        }catch (HttpException $ex) {
+            echo $ex->statusCode;
+            print_r($ex->getMessage());
+        }
+
+
+
+    }*/
 
 }

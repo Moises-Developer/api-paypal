@@ -1,6 +1,20 @@
+@if($brand = Session::get('brand'))
+@if($function = Session::get('function'))
+@if($function == 'edit')
+@include('empresa/marcaFunciones/edit')
+@endif
+@endif
+@endif
 
+@if($brand = Session::get('brand'))
+@if($function = Session::get('function'))
+@if($function == 'delete')
+@include('empresa/marcaFunciones/delete')
+@endif
+@endif
+@endif
 
-
+@if($brand == '')
 <button type="button" class="btn btn-primary btnHidden" data-bs-toggle="modal" data-bs-target="#exampleModal4">
   Añadir marca
 </button>
@@ -41,3 +55,4 @@
     </div>
   </div>
 </div>
+@endif

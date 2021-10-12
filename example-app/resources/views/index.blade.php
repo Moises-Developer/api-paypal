@@ -19,6 +19,9 @@
         @isset($brands)
         @include('tablas/marcas')
         @endisset
+        @isset($models)
+        @include('tablas/modelo')
+        @endisset
         @isset($costumers)
         <div class="container">
             <h1 class="text-center">Tabla de clientes</h1>

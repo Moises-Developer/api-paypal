@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ModelCar;
 use App\Brand;
 
-class ControllerBrand extends Controller
+class ControllerModelCar extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class ControllerBrand extends Controller
      */
     public function index()
     {
-        return view('index')->with('brands', Brand::all())->with('table', 'brands');
+        return view('index')->with('models', ModelCar::with('brand'))->with('table', 'sellers')->with('brand', Brand::all());
     }
 
     /**
@@ -24,7 +25,7 @@ class ControllerBrand extends Controller
      */
     public function create()
     {
-        return "ERROR 404, PAGE NOT FOUND";
+        //
     }
 
     /**
@@ -35,8 +36,7 @@ class ControllerBrand extends Controller
      */
     public function store(Request $request)
     {
-        Brand::create($request->all());
-        return redirect('/brand')->with('stateCreation', 'Se ha añadido la marca de manera exitosa!!!');
+        //
     }
 
     /**
@@ -47,7 +47,7 @@ class ControllerBrand extends Controller
      */
     public function show($id)
     {
-        return redirect('/brand')->with('brand', Brand::find($id))->with('function', 'delete');
+        //
     }
 
     /**
@@ -58,7 +58,7 @@ class ControllerBrand extends Controller
      */
     public function edit($id)
     {
-        return redirect('/brand')->with('brand', Brand::find($id))->with('function', 'edit');
+        //
     }
 
     /**
@@ -70,9 +70,7 @@ class ControllerBrand extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brand = Brand::find($id);
-        $brand->update($request->all());
-        return redirect('/brand')->with('stateCreation', 'Se hizo la actualizacion de forma exitosa!!!');
+        //
     }
 
     /**
@@ -83,8 +81,6 @@ class ControllerBrand extends Controller
      */
     public function destroy($id)
     {
-        $brand = Brand::find($id);
-        $brand->delete();
-        return redirect('/brand')->with('stateCreation', 'Se elimino la marca de manera exitosa!!!');
+        //
     }
 }

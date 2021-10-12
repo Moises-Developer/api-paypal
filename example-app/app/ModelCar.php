@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ModelCar extends Model
 {
-    //missing attrts
+    protected $table = 'models';
+    protected $fillable = ['name', 'brand_ID'];
     
     public function brand()
     {
-        return $this->belongsTo('App/Brand');
+        return $this->belongsTo('App/Brand', 'brand_ID');
     }
 
     public function version()

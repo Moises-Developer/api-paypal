@@ -12,10 +12,12 @@
       </div>
       <div class="modal-body">
           
-      <form class="row g-3 needs-validation" novalidate>
+      <form class="row g-3 needs-validation" action="brand/{{ $brand->id }}" method="POST" novalidate>
+      {{ csrf_field() }}
+      <input type="hidden" name="_method" value="put">
   <div class="col-md-7 position-relative">
     <label for="validationTooltip01" class="form-label">Nombre de la marca </label>
-    <input type="text" class="form-control" name="name" value="{{ brand->name }}" id="validationTooltip01"  required>
+    <input type="text" class="form-control" name="name" value="{{ $brand->name }}" id="validationTooltip01"  required>
     <div class="valid-tooltip">
       Looks good!
     </div>

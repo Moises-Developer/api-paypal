@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Seller;
 
 class ControllerSeller extends Controller
 {
@@ -13,7 +14,7 @@ class ControllerSeller extends Controller
      */
     public function index()
     {
-        //
+        return view('index')->with('sellers', Seller::all())->with('table', 'sellers');
     }
 
     /**
@@ -23,7 +24,7 @@ class ControllerSeller extends Controller
      */
     public function create()
     {
-        //
+        return "ERROR 404, PAGE NOT FOUND";
     }
 
     /**
@@ -34,7 +35,8 @@ class ControllerSeller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Seller::create($request->all());
+        return redirect('/seller')->with('stateCreation', 'Se ha añadido el vendedor de manera exitosa!!!');
     }
 
     /**
@@ -45,7 +47,7 @@ class ControllerSeller extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect('/seller')->with('seller', Seller::find($id))->with('function', 'delete');
     }
 
     /**
@@ -56,7 +58,7 @@ class ControllerSeller extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect('/seller')->with('seller', Seller::find($id))->with('function', 'edit');
     }
 
     /**
@@ -68,7 +70,9 @@ class ControllerSeller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $seller = Seller::find($id);
+        $seller->update($request->all());
+        return redirect('/seller')->with('stateCreation', 'Se hizo la actualizacion de forma exitosa!!!');
     }
 
     /**
@@ -79,6 +83,8 @@ class ControllerSeller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $seller = Seller::find($id);
+        $seller->delete();
+        return redirect('/seller')->with('stateCreation', 'Se elimino el vendedor de manera exitosa!!!');
     }
 }

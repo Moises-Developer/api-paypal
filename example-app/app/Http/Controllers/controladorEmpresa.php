@@ -8,6 +8,6 @@ class controladorEmpresa extends Controller
 {
     public function indexCreate()
     {
-        return view('index');
+        return "ERROR 404";
     }
 }

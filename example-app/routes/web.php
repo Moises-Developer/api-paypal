@@ -19,7 +19,8 @@ Route::resources([
     '/costumer' => 'ControllerCostumer',
     '/seller' => 'ControllerSeller',
     '/sell' => 'ControllerSell',
-    '/car' => 'ControllerCar'
+    '/car' => 'ControllerCar',
+    '/brand' => 'ControllerBrand'
 ]);
 
 Route::get('/API/PayPal/Pay', 'ControllerPayment@payWithPayPal');

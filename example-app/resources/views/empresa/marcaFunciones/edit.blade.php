@@ -1,8 +1,5 @@
-
-
-
 <button type="button" class="btn btn-primary btnHidden" data-bs-toggle="modal" data-bs-target="#exampleModal4">
-  Añadir marca
+  Editar marca
 </button>
 
 <!-- Modal -->
@@ -10,16 +7,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Añade una marca </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edita una marca </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
           
-      <form class="row g-3 needs-validation" action="/brand" method="POST" novalidate>
-      {{ csrf_field() }}
+      <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-7 position-relative">
     <label for="validationTooltip01" class="form-label">Nombre de la marca </label>
-    <input type="text" class="form-control" name="name" id="validationTooltip01"  required>
+    <input type="text" class="form-control" name="name" value="{{ brand->name }}" id="validationTooltip01"  required>
     <div class="valid-tooltip">
       Looks good!
     </div>
@@ -28,7 +24,7 @@
     </div>
   
   <div class="col-12">
-    <button class="btn btn-primary" type="submit"> Añadir Marca </button>
+    <button class="btn btn-primary" type="submit"> Editar Marca </button>
   </div>
 </form>
 

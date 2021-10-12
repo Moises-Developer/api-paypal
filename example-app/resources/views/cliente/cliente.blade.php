@@ -1,6 +1,19 @@
 @if($costumer = Session::get('costumer'))
+@if($function = Session::get('function'))
+@if($function == 'edit')
 @include('cliente/funciones/edit')
 @endif
+@endif
+@endif
+
+@if($costumer = Session::get('costumer'))
+@if($function = Session::get('function'))
+@if($function == 'delete')
+@include('cliente/funciones/delete')
+@endif
+@endif
+@endif
+
 @if($costumer == '')
 <button type="button" class="btn btn-primary btnHidden" data-bs-toggle="modal" data-bs-target="#exampleModal7">
   Añadir cliente

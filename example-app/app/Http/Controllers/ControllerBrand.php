@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Costumer;
+use App\Brand;
 
-class ControllerCostumer extends Controller
+class ControllerBrand extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ControllerCostumer extends Controller
      */
     public function index()
     {
-        return view('index')->with('costumers', Costumer::all())->with('table', 'costumers');
+        return view('index')->with('brands', Brand::all())->with('table', 'brands');
     }
 
     /**
@@ -24,7 +24,7 @@ class ControllerCostumer extends Controller
      */
     public function create()
     {
-        return 'ERROR 404, PAGE NOT FOUND';
+        return "ERROR 404, PAGE NOT FOUND";
     }
 
     /**
@@ -35,20 +35,8 @@ class ControllerCostumer extends Controller
      */
     public function store(Request $request)
     {
-        //here I do the validation of the columns
-
-        //just in this version of laravel it doesn't exist this validation
-
-        /*$request->validate([
-            'name' => 'required',
-            'lastname' => 'required',
-            'telephone' => 'required',
-            'address' => 'required'
-        ]);*/
-        //Here I do the creation in database
-        Costumer::create($request->all());
-        //now we return an answer
-        return redirect('/costumer')->with('stateCreation', 'Se añadio el cliente de forma exitosa!!!');
+        Brand::create($request->all());
+        return redirect('/brand')->with('stateCreation', 'Se ha añadido la marca de manera exitosa!!!');
     }
 
     /**
@@ -59,7 +47,7 @@ class ControllerCostumer extends Controller
      */
     public function show($id)
     {
-        return redirect('/costumer')->with('costumer', Costumer::find($id))->with('function', 'delete');
+        return redirect('/brand')->with('brand', Brand::find($id))->with('function', 'delete');
     }
 
     /**
@@ -70,7 +58,7 @@ class ControllerCostumer extends Controller
      */
     public function edit($id)
     {
-        return redirect('/costumer')->with('costumer', Costumer::find($id))->with('function', 'edit');
+        //
     }
 
     /**
@@ -82,9 +70,7 @@ class ControllerCostumer extends Controller
      */
     public function update(Request $request, $id)
     {
-        $costumer = Costumer::find($id);
-        $costumer->update($request->all());
-        return redirect('/costumer')->with('stateCreation', 'Se hizo la actualizacion de forma exitosa!!!');
+        //
     }
 
     /**
@@ -95,8 +81,6 @@ class ControllerCostumer extends Controller
      */
     public function destroy($id)
     {
-        $costumer = Costumer::find($id);
-        $costumer->delete();
-        return redirect('costumer')->with('stateCreation', 'Se elimino el cliente de manera exitosa!!!');
+        //
     }
 }

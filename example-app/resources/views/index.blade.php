@@ -8,42 +8,50 @@
     @include('componentes/nav')
     
     <section class="container">
+        @if($statusCreation = Session::get('stateCreation'))
+        <div class="alert alert-success">
+            <h2>{{ $statusCreation }}</h2>
+        </div>
+        @endif
+        @isset($sellers)
+        @include('tablas/vendedores')
+        @endisset
+        @isset($brands)
+        @include('tablas/marcas')
+        @endisset
+        @isset($costumers)
         <div class="container">
-            <h1 class="text-center">Tabla de vehiculos</h1>
+            <h1 class="text-center">Tabla de clientes</h1>
         </div>
         <div>
             <table class="table caption-top">
-                <caption>List of users</caption>
+                <caption>Lista de clientes</caption>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Matricula</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Version</th>
+                        <th scope="col">Nombre: </th>
+                        <th scope="col">Apellido: </th>
+                        <th scope="col">Telefono: </th>
+                        <th scope="col">Direccion: </th>
+                        <th scope="col">EDITAR</th>
+                        <th scope="col">ELIMINAR</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($costumers as $costumer)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">{{ $costumer->id }}</th>
+                        <td>{{ $costumer->name }}</td>
+                        <td>{{ $costumer->lastname }}</td>
+                        <td>{{ $costumer->telephone }}</td>
+                        <td>{{ $costumer->address }}</td>
+                        <td><a href="costumer/{{ $costumer->id }}/edit">EDITAR CLIENTE</a></td>
+                        <td><a href="costumer/{{ $costumer->id }}">ELIMINAR CLIENTE</a></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
-
+            @endisset
             <a href="{{ url('/API/PayPal/Pay') }}"> PayPal </a>
 
         </div>

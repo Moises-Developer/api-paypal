@@ -1,24 +1,6 @@
-@if($seller = Session::get('seller'))
-@if($function = Session::get('function'))
-@if($function == 'edit')
-@include('empresa/vendedorFunciones/edit')
-@endif
-@endif
-@endif
-
-@if($seller = Session::get('seller'))
-@if($function = Session::get('function'))
-@if($function == 'delete')
-@include('empresa/vendedorFunciones/delete')
-@endif
-@endif
-@endif
-
-
-@if($seller == '')
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btnHidden" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Añadir vendedor
+  Eliminar vendedor
 </button>
 
 <!-- Modal -->
@@ -26,43 +8,44 @@
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Añade un vendedor</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Elimina un vendedor</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         
-      <form class="row g-3 needs-validation" action="seller" method="POST" novalidate>
+      <form class="row g-3 needs-validation" action="seller/{{ $seller->id }}" method="POST" novalidate>
         {{ csrf_field() }}
+        <input type="hidden" name="_method" value="delete">
   <div class="col-md-4 position-relative">
     <label for="validationTooltip01" class="form-label">Nombre del vendedor: </label>
-    <input type="text" class="form-control" name="name" id="validationTooltip01" required>
+    <input type="text" class="form-control" value="{{ $seller->name }}" name="name" id="validationTooltip01" disabled>
     <div class="valid-tooltip">
       Looks good!
     </div>
   </div>
   <div class="col-md-4 position-relative">
     <label for="validationTooltip02" class="form-label">Apellidos del vendedor: </label>
-    <input type="text" class="form-control" name="lastname" id="validationTooltip02"  required>
+    <input type="text" class="form-control" value="{{ $seller->lastname }}" name="lastname" id="validationTooltip02"  disabled>
     <div class="valid-tooltip">
       Looks good!
     </div>
   </div>
   <div class="col-md-4 position-relative">
     <label for="validationTooltip03" class="form-label">Telefono del vendedor: </label>
-    <input type="text" class="form-control" name="telephone" id="validationTooltip03" required>
+    <input type="text" class="form-control" value="{{ $seller->telephone }}" name="telephone" id="validationTooltip03" disabled>
     <div class="valid-tooltip">
       Looks good!
     </div>
   </div>
   <div class="col-md-4 position-relative">
     <label for="validationTooltip04" class="form-label">Direccion del vendedor: </label>
-    <input type="text" class="form-control" name="address" id="validationTooltip04" required>
+    <input type="text" class="form-control" value="{{ $seller->address }}"name="address" id="validationTooltip04" disabled>
     <div class="valid-tooltip">
       Looks good!
     </div>
   </div>
   <div class="col-12">
-    <button class="btn btn-primary" type="submit"> Agregar vendedor </button>
+    <button class="btn btn-primary" type="submit"> Eliminar vendedor </button>
   </div>
 </form>
 
@@ -75,4 +58,3 @@
     </div>
   </div>
 </div>
-@endif

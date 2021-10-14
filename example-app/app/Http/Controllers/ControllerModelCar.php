@@ -15,7 +15,8 @@ class ControllerModelCar extends Controller
      */
     public function index()
     {
-        return view('index')->with('models', ModelCar::with('brand'))->with('table', 'sellers')->with('brand', Brand::all());
+        return view('index')->with('models', ModelCar::all())->with('table', 'models')->with('brands', Brand::all());
+        //return view('index')->with('models', ModelCar::all())->with('brands', Brand::all());
     }
 
     /**
@@ -25,7 +26,7 @@ class ControllerModelCar extends Controller
      */
     public function create()
     {
-        //
+        //return view('index')->with('models', ModelCar::with('brand'))->with('table', 'sellers')->with('brand', Brand::all());
     }
 
     /**
@@ -36,7 +37,8 @@ class ControllerModelCar extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ModelCar::create($request->all());
+        return redirect('/model')->with('stateCreation', 'Se ha añadido el modelo de manera exitosa!!!');
     }
 
     /**

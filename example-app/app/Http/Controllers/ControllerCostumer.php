@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Costumer;
+use App\Brand;
 
 class ControllerCostumer extends Controller
 {
@@ -14,7 +15,7 @@ class ControllerCostumer extends Controller
      */
     public function index()
     {
-        return view('index')->with('costumers', Costumer::all())->with('table', 'costumers');
+        return view('index')->with('costumers', Costumer::all())->with('table', 'costumers')->with('brands', Brand::all());
     }
 
     /**

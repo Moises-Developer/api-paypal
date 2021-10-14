@@ -17,7 +17,11 @@
         @include('tablas/vendedores')
         @endisset
         @isset($brands)
+        @if($table = Session::get('table'))
+        @if($table == "models")
         @include('tablas/marcas')
+        @endif
+        @endif
         @endisset
         @isset($models)
         @include('tablas/modelo')

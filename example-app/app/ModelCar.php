@@ -3,15 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Brand;
 
 class ModelCar extends Model
 {
-    protected $table = 'models';
-    protected $fillable = ['name', 'brand_ID'];
+    protected $fillable = ['name', 'brand_id'];
     
     public function brand()
     {
-        return $this->belongsTo('App/Brand', 'brand_ID');
+        return $this->belongsTo('App\Brand');
     }
 
     public function version()

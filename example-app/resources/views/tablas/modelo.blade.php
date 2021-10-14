@@ -17,7 +17,7 @@
         <tr>
             <th scope="row">{{ $model->id }}</th>
             <td>{{ $model->name }}</td>
-            <td>{{ $model->brand_ID }}</td>
+            <td>{{ $model->brand->name }}</td>
             <td><a href="model/{{ $model->id }}/edit">EDITAR MODELO</a></td>
             <td><a href="model/{{ $model->id }}">ELIMINAR MODELO</a></td>
         </tr>

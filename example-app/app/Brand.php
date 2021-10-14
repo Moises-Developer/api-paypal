@@ -3,13 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\ModelCar;
 
 class Brand extends Model
 {
     protected $fillable = ['name'];
 
-    public function modelcar()
+    public function modelcars()
     {
-        return $this->hasMany('App/ModelCar');
+        return $this->hasMany('App\ModelCar');
     }
 }

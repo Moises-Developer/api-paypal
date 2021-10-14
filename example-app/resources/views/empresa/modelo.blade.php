@@ -12,19 +12,23 @@
       </div>
       <div class="modal-body">
         
-      <form class="row g-3 needs-validation" novalidate>
+      <form class="row g-3 needs-validation" action="/model" method="POST" novalidate>
+      {{ csrf_field() }}
   <div class="col-md-4 position-relative">
     <label for="validationTooltip01" class="form-label">Nombre del modelo </label>
-    <input type="text" class="form-control" id="validationTooltip01" required>
+    <input type="text" class="form-control" name="name" id="validationTooltip01" required>
     <div class="valid-tooltip">
       Looks good!
     </div>
   </div>
   <div class="col-md-4 position-relative">
     <label for="validationTooltip02" class="form-label">Marca </label>
-    <select class="form-select" id="validationTooltip02" required>
-      <option selected disabled value="">Choose...</option>
-      <option>...</option>
+    <select class="form-select" name="brand_ID" id="validationTooltip02" required>
+      <option selected disabled value="">Elegir una opcion... </option>
+      @foreach($brands as $brand)
+      <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+      @endforeach
+
     </select>
     <div class="valid-tooltip">
       Looks good!

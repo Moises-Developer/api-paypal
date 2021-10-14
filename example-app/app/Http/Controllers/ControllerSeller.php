@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Seller;
+use App\Brand;
 
 class ControllerSeller extends Controller
 {
@@ -14,7 +15,7 @@ class ControllerSeller extends Controller
      */
     public function index()
     {
-        return view('index')->with('sellers', Seller::all())->with('table', 'sellers');
+        return view('index')->with('sellers', Seller::all())->with('table', 'sellers')->with('brands', Brand::all());
     }
 
     /**

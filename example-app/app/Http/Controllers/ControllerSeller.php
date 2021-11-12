@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Seller;
+use App\Car;
+use App\ModelCar;
 use App\Brand;
+use App\Version;
+use App\Costumer;
+use App\Seller;
+use App\Sell;
 
 class ControllerSeller extends Controller
 {
@@ -15,7 +20,9 @@ class ControllerSeller extends Controller
      */
     public function index()
     {
-        return view('index')->with('sellers', Seller::all())->with('table', 'sellers')->with('brands', Brand::all());
+        return view('index')->with('sellers', Seller::all())->with('table', 'sellers')
+        ->with('brands', Brand::all())->with('function', '')->with('versions', Version::all())
+        ->with('costumers', Costumer::all())->with('cars', Car::all())->with('models', ModelCar::all());
     }
 
     /**

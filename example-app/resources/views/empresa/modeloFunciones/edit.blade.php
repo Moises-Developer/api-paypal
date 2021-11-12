@@ -1,22 +1,5 @@
-@if($model = Session::get('model'))
-@if($function = Session::get('function'))
-@if($function == 'edit')
-@include('empresa/modeloFunciones/edit')
-@endif
-@endif
-@endif
-
-@if($model = Session::get('model'))
-@if($function = Session::get('function'))
-@if($function == 'delete')
-@include('empresa/modeloFunciones/delete')
-@endif
-@endif
-@endif
-
-@if($function == '')
 <button type="button" class="btn btn-primary btnHidden" data-bs-toggle="modal" data-bs-target="#exampleModal3">
-  Añadir modelo
+  Editar modelo
 </button>
 
 <!-- Modal -->
@@ -24,16 +7,17 @@
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Añade los modelos</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edita los modelos</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         
-      <form class="row g-3 needs-validation" action="/model" method="POST" novalidate>
+      <form class="row g-3 needs-validation" action="/model/{{ $model->id }}" method="POST" novalidate>
       {{ csrf_field() }}
+      <input type="hidden" name="_method" value="put">
   <div class="col-md-4 position-relative">
     <label for="validationTooltip01" class="form-label">Nombre del modelo </label>
-    <input type="text" class="form-control" name="name" id="validationTooltip01" required>
+    <input type="text" class="form-control" value="{{ $model->name }}" name="name" id="validationTooltip01" required>
     <div class="valid-tooltip">
       Looks good!
     </div>
@@ -41,7 +25,7 @@
   <div class="col-md-4 position-relative">
     <label for="validationTooltip02" class="form-label">Marca </label>
     <select class="form-select" name="brand_id" id="validationTooltip02" required>
-      <option selected disabled value="">Elegir una opcion... </option>
+      <option selected disabled value="{{ $model->brand->id }}">{{ $model->brand->name }}</option>
       @foreach($brands as $brand)
       <option value="{{ $brand->id }}">{{ $brand->name }}</option>
       @endforeach
@@ -53,7 +37,7 @@
   </div>
   
   <div class="col-12">
-    <button class="btn btn-primary" type="submit"> Agregar Modelo </button>
+    <button class="btn btn-primary" type="submit"> Editar Modelo </button>
   </div>
 </form>
 
@@ -67,4 +51,3 @@
     </div>
   </div>
 </div>
-@endif

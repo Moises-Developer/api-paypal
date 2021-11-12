@@ -11,6 +11,7 @@
 |
 */
 
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'controladorEmpresa@indexCreate');
@@ -21,12 +22,14 @@ Route::resources([
     '/sell' => 'ControllerSell',
     '/car' => 'ControllerCar',
     '/brand' => 'ControllerBrand',
-    '/model' => 'ControllerModelCar'
+    '/model' => 'ControllerModelCar',
+    '/version' => 'ControllerVersion'
 ]);
 
 Route::get('/API/PayPal/Pay', 'ControllerPayment@payWithPayPal');
 Route::get('/API/PayPal/Pay/Status', 'ControllerPayment@PayPalStatus');
 Route::get('/API/PayPal/Pay/Status/Fail', 'ControllerPayment@PayPalFail');
 Route::get('/API/PayPal/Pay/Status/Success', 'ControllerPayment@PayPalSuccess');
+
 
 Auth::routes();

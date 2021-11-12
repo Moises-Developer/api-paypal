@@ -14,19 +14,41 @@
         </div>
         @endif
         @isset($sellers)
+        @if($table == 'sellers')
         @include('tablas/vendedores')
+        @endif
         @endisset
         @isset($brands)
-        @if($table = Session::get('table'))
-        @if($table == "models")
+        @if($table == 'brands')
         @include('tablas/marcas')
-        @endif
         @endif
         @endisset
         @isset($models)
+        @if($table == 'models')
         @include('tablas/modelo')
+        @endif
+        @endisset
+        @isset($versions)
+        @if($table == 'version')
+        @include('tablas/version')
+        @endif
+        @endisset
+        @isset($cars)
+        @if($table == 'cars')
+        @include('tablas/carros')
+        @endif
+        @endisset
+        @isset($sells)
+        @if($table == 'sells')
+        @endif
+        @endisset
+        @isset($sells)
+        @if($table == 'sells')
+        @include('tablas/ventas')
+        @endif
         @endisset
         @isset($costumers)
+        @if($table == 'costumers')
         <div class="container">
             <h1 class="text-center">Tabla de clientes</h1>
         </div>
@@ -58,6 +80,7 @@
                     @endforeach
                 </tbody>
             </table>
+            @endif
             @endisset
             <a href="{{ url('/API/PayPal/Pay') }}"> PayPal </a>
 

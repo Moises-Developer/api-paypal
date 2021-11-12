@@ -11,7 +11,7 @@ use App\Costumer;
 use App\Seller;
 use App\Sell;
 
-class ControllerSell extends Controller
+class ControllerVersion extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +20,9 @@ class ControllerSell extends Controller
      */
     public function index()
     {
-        return view('index')->with('models', ModelCar::all())->with('table', 'sells')->with('function', '')
-        ->with('brands', Brand::all())->with('cars', Car::all())->with('versions', Version::all())->with('costumers', Costumer::all())
-        ->with('sellers', Seller::all())->with('sells', Sell::all());
+        return view('index')->with('models', ModelCar::all())->with('table', 'version')->with('function', '')
+        ->with('brands', Brand::all())->with('versions', Version::all())->with('sellers', Seller::all())
+        ->with('costumers', Costumer::all())->with('cars', Car::all());
     }
 
     /**
@@ -43,8 +43,8 @@ class ControllerSell extends Controller
      */
     public function store(Request $request)
     {
-        Sell::create($request->all());
-        return redirect('/sell')->with('stateCreation', 'Se ha realizado la venta de manera exitosa!!!');
+        Version::create($request->all());
+        return redirect('/version')->with('stateCreation', 'Se ha añadido la version de manera exitosa!!!');
     }
 
     /**
@@ -55,7 +55,7 @@ class ControllerSell extends Controller
      */
     public function show($id)
     {
-        return redirect('/sell')->with('sell', Sell::find($id))->with('function', 'delete');
+        return redirect('/version')->with('version', Version::find($id))->with('function', 'delete');
     }
 
     /**
@@ -66,7 +66,7 @@ class ControllerSell extends Controller
      */
     public function edit($id)
     {
-        return redirect('/sell')->with('sell', Sell::find($id))->with('function', 'edit');
+        return redirect('/version')->with('version', Version::find($id))->with('function', 'edit');
     }
 
     /**
@@ -78,9 +78,9 @@ class ControllerSell extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sell = Sell::find($id);
-        $sell->update($request->all());
-        return redirect('/sell')->with('stateCreation', 'Se hizo la actualizacion de forma exitosa!!!');
+        $version = Version::find($id);
+        $version->update($request->all());
+        return redirect('/version')->with('stateCreation', 'Se hizo la actualizacion de forma exitosa!!!');
     }
 
     /**
@@ -91,8 +91,8 @@ class ControllerSell extends Controller
      */
     public function destroy($id)
     {
-        $sell = Sell::find($id);
-        $sell->delete();
-        return redirect('/sell')->with('stateCreation', 'Se elimino la venta de manera exitosa!!!');
+        $version = Version::find($id);
+        $version->delete();
+        return redirect('/version')->with('stateCreation', 'Se elimino la version de manera exitosa!!!');
     }
 }

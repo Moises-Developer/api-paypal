@@ -16,7 +16,7 @@ class ModelCar extends Model
 
     public function version()
     {
-        return $this->hasMany('App/Version');
+        return $this->hasMany('App\Version');
     }
 
 }

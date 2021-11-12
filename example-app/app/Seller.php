@@ -11,7 +11,7 @@ class Seller extends Model
 
     public function sell()
     {
-        return $this->hasMany('App/Sell');
+        return $this->hasMany('App\Sell');
     }
 
 

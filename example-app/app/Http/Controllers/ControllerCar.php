@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Car;
+use App\ModelCar;
+use App\Brand;
+use App\Version;
+use App\Costumer;
+use App\Seller;
+use App\Sell;
 
 class ControllerCar extends Controller
 {
@@ -13,7 +20,9 @@ class ControllerCar extends Controller
      */
     public function index()
     {
-        //
+        return view('index')->with('models', ModelCar::all())->with('table', 'cars')->with('function', '')
+        ->with('brands', Brand::all())->with('cars', Car::all())->with('versions', Version::all())->with('sellers', Seller::all())
+        ->with('costumers', Costumer::all());
     }
 
     /**
@@ -23,7 +32,7 @@ class ControllerCar extends Controller
      */
     public function create()
     {
-        //
+        return "ERROR 404, PAGE NOT FOUND";
     }
 
     /**
@@ -34,7 +43,8 @@ class ControllerCar extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Car::create($request->all());
+        return redirect('/car')->with('stateCreation', 'Se ha añadido el vehiculo de manera exitosa!!!');
     }
 
     /**
@@ -45,7 +55,7 @@ class ControllerCar extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect('/car')->with('car', Car::find($id))->with('function', 'delete');
     }
 
     /**
@@ -56,7 +66,7 @@ class ControllerCar extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect('/car')->with('car', Car::find($id))->with('function', 'edit');
     }
 
     /**
@@ -68,7 +78,9 @@ class ControllerCar extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car = Car::find($id);
+        $car->update($request->all());
+        return redirect('/car')->with('stateCreation', 'Se hizo la actualizacion de forma exitosa!!!');
     }
 
     /**
@@ -79,6 +91,8 @@ class ControllerCar extends Controller
      */
     public function destroy($id)
     {
-        //
+        $car = Car::find($id);
+        $car->delete();
+        return redirect('/car')->with('stateCreation', 'Se elimino el vehiculo de manera exitosa!!!');
     }
 }

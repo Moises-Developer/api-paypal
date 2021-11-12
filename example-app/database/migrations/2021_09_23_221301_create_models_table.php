@@ -16,8 +16,8 @@ class CreateModelsTable extends Migration
         Schema::create('models', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 30);
-            $table->unsignedBigInteger('brand_ID');
-            $table->foreign('brand_ID')->references('id')->on('brands')->onUpdate('cascade')->onDelete('restrict');
+            $table->unsignedBigInteger('brand_id');
+            $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
